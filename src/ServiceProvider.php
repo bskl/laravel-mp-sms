@@ -1,12 +1,16 @@
 <?php
 
-namespace bskl\LaravelMpSms;
+namespace Bskl\LaravelMpSms;
 
 use bskl\LaravelMpSms\MpSms;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
 class ServiceProvider extends IlluminateServiceProvider
 {
+    /**
+     * @var bool
+     */
+
     /**
      * Register the service provider.
      *
@@ -37,7 +41,7 @@ class ServiceProvider extends IlluminateServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__.'/../config/mp-sms.php' => config_path('mp-sms.php'),
-            ]);
+            ], 'config');
         }
     }
 

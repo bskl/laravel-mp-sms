@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Support\MesajPaneli;
+namespace Bskl\LaravelMpSms\MesajPaneli;
 
 use \Exception as AuthenticationException;
 use \Exception as SmsException;

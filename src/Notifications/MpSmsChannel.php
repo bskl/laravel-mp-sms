@@ -1,24 +1,24 @@
 <?php
 
-namespace bskl\LaravelMpSms\Notifications;
+namespace Bskl\LaravelMpSms\Notifications;
 
-use MesajPaneli\MesajPaneliApi;
+use Bskl\LaravelMpSms\MpSms;
 use Illuminate\Notifications\Notification;
 
 class MpSmsChannel
 {
     /**
-     * @var MesajPaneliApi
+     * @var MpSms
      */
     private $client;
 
     /**
-     * OvhSmsChannel constructor.
+     * MpSmsChannel constructor.
      *
-     * @param   OvhSms $client
+     * @param   MpSms $client
      * @return  self
      */
-    public function __construct(MesajPaneliApi $client)
+    public function __construct(MpSms $client)
     {
         $this->client = $client;
     }
@@ -37,12 +37,10 @@ class MpSmsChannel
             return;
         }
 
-        $message = $notification->toSms($notifiable);
+        $message = $notification->toMpSms($notifiable);
 
         try {
-            $sms = $this->client->parametrikMesajEkle($to, $message->content);
-
-            $sms->parametrikMesajGonder( 'Makbuz Oluşturuldu' );
+            $sms = $this->client->sendSms($to, $message->content);
         }
         catch ( Exception $e ) {
             echo $e->getMessage();
