@@ -1,6 +1,6 @@
 
 {
-    "name": "bskl/laravel-mesaj-paneli",
+    "name": "bskl/laravel-mp-sms",
     "description": "The mesajpaneli.com Sms Api integration for Laravel 5.",
     "keywords": [
         "laravel",
