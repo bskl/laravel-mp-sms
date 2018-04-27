@@ -1,0 +1,44 @@
+
+{
+    "name": "bskl/laravel-mesaj-paneli",
+    "description": "The mesajpaneli.com Sms Api integration for Laravel 5.",
+    "keywords": [
+        "laravel",
+        "laravel5",
+        "mesajpaneli",
+        "sms",
+        "api"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Barış Kartal",
+            "email": "kartalbaris@gmail.com"
+        },
+        {
+            "name": "Savaş Kartal",
+            "email": "savaskartal@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.9",
+        "illuminate/support": ">=5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "bskl\\LaravelMpSms\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "bskl\\LaravelMpSms\\ServiceProvider"
+            ],
+            "aliases": {
+                "MpSms": "bskl\\LaravelMpSms\\Facade"
+            }
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
