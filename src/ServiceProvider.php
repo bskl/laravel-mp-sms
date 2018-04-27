@@ -13,24 +13,19 @@ class ServiceProvider extends IlluminateServiceProvider
     protected $defer = false;
 
     /**
-     * @var string
-     */
-    protected $configName = 'mp-sms';
-
-    /**
      * Register the service provider.
      *
      * @return void
      */
     public function register()
     {
-        $configPath = __DIR__ . '/../config/' . $this->configName . '.php';
-
-        $this->mergeConfigFrom($configPath, $this->configName);
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/mp-sms.php', 'mp-sms'
+        );
 
         $this->app->bind(MpSms::class, MpSms::class);
 
-        $this->app->singleton('mpsms', function ($app) {
+        $this->app->singleton('mpsms', function () {
             return new MpSms();
         });
 
@@ -44,9 +39,11 @@ class ServiceProvider extends IlluminateServiceProvider
      */
     public function boot()
     {
-        $configPath = __DIR__ . '/../config/' . $this->configName . '.php';
-
-        $this->publishes([$configPath => config_path($this->configName . '.php')], 'config');
+        if ($this->app->runningInConsole()) {
+            $this->publishes([
+                __DIR__.'/../config/mp-sms.php' => config_path('mp-sms.php'),
+            ]);
+        }
     }
 
 }
