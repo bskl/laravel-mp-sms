@@ -1,6 +1,6 @@
 <?php
 
-namespace bskl\LaravelMpSms;
+namespace Bskl\LaravelMpSms;
 
 use Illuminate\Support\Facades\Facade as IlluminateFacade;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace bskl\LaravelMpSms;
+namespace Bskl\LaravelMpSms;
 
-use MesajPaneli\MesajPaneliApi;
+use Bskl\LaravelMpSms\MesajPaneli\MesajPaneliApi;
 
 class MpSms
 {
