@@ -8,11 +8,6 @@ use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 class ServiceProvider extends IlluminateServiceProvider
 {
     /**
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
      * Register the service provider.
      *
      * @return void
