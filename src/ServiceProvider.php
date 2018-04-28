@@ -1,8 +1,8 @@
 <?php
 
-namespace Bskl\LaravelMpSms;
+namespace Bskl\MpSms;
 
-use bskl\LaravelMpSms\MpSms;
+use Bskl\MpSms\MpSms;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
 class ServiceProvider extends IlluminateServiceProvider

@@ -1,8 +1,8 @@
 <?php
 
-namespace Bskl\LaravelMpSms;
+namespace Bskl\MpSms;
 
-use Bskl\LaravelMpSms\MesajPaneli\MesajPaneliApi;
+use Bskl\MpSms\MesajPaneli\MesajPaneliApi;
 
 class MpSms
 {
@@ -84,5 +84,24 @@ class MpSms
     public function getSmsSendReport($ref)
     {
         return $this->client->raporDetay($ref);
+    }
+
+    /**
+     * Dynamic client method call.
+     *
+     * @param   string $method
+     * @param   array  $args
+     * @return  SmsApi
+     */
+    public function __call($method, array $args = [])
+    {
+        if (method_exists($this->client, $method))
+        {
+            return call_user_func_array([
+                $this->client,
+                $method
+            ], $args);
+        }
+        throw new \BadMethodCallException("Invalid method $method.");
     }
 }

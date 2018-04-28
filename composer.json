@@ -26,16 +26,16 @@
     },
     "autoload": {
         "psr-4": {
-            "bskl\\LaravelMpSms\\": "src/"
+            "Bskl\\MpSms\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "bskl\\LaravelMpSms\\ServiceProvider"
+                "Bskl\\MpSms\\ServiceProvider"
             ],
             "aliases": {
-                "MpSms": "bskl\\LaravelMpSms\\Facade"
+                "MpSms": "Bskl\\MpSms\\Facade"
             }
         }
     },
