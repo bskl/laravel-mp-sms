@@ -1,8 +1,8 @@
 <?php
 
-namespace Bskl\LaravelMpSms\Notifications;
+namespace Bskl\MpSms\Notifications;
 
-use Bskl\LaravelMpSms\MpSms;
+use Bskl\MpSms\MpSms;
 use Illuminate\Notifications\Notification;
 
 class MpSmsChannel
@@ -40,7 +40,7 @@ class MpSmsChannel
         $message = $notification->toMpSms($notifiable);
 
         try {
-            $sms = $this->client->sendSms($to, $message->content);
+            return $this->client->sendSms($to, $message->content);
         }
         catch ( Exception $e ) {
             echo $e->getMessage();

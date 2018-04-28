@@ -1,6 +1,6 @@
 <?php
 
-namespace Bskl\LaravelMpSms\Notifications;
+namespace Bskl\MpSms\Notifications;
 
 class MpSmsMessage
 {

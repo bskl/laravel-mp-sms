@@ -1,6 +1,6 @@
 <?php
 
-namespace Bskl\LaravelMpSms\MesajPaneli;
+namespace Bskl\MpSms\MesajPaneli;
 
 Class TopluMesaj
 {
