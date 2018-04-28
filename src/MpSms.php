@@ -22,7 +22,7 @@ class MpSms
      * @param   void
      * @return  self
      */
-    public function __construct(string $from)
+    public function __construct(string $from = null)
     {
         $this->from = $from ?: config('mp-sms.from');
 
@@ -40,7 +40,7 @@ class MpSms
      * @param   string       $from
      * @return  \MesajPaneli\MesajPaneliApi
      */
-    public function sendSms($to, $content, $from = false)
+    public function sendSms($to, $content, $from = null)
     {
         $from = $from ?: $this->from;
 
@@ -50,9 +50,7 @@ class MpSms
                 "tel" => $to,
             ];
 
-            $message = $this->client->topluMesajGonder($from, $data);
-
-            return $message;
+            return $this->client->topluMesajGonder($from, $data);
         }
 
         if (is_array($content)) {
@@ -63,16 +61,12 @@ class MpSms
                 ];
             }
 
-            $message = $this->client->parametrikMesajGonder($from, $data);
-
-            return $message;
+            return $this->client->parametrikMesajGonder($from, $data);
         }
 
         $this->client->parametrikMesajEkle($to, $content);
 
-        $message = $this->client->parametrikMesajGonder($from);
-
-        return $message;
+        return $this->client->parametrikMesajGonder($from);
     }
 
     /**
