@@ -2,7 +2,6 @@
 
 namespace Bskl\MpSms;
 
-use Bskl\MpSms\MpSms;
 use Illuminate\Support\ServiceProvider as IlluminateServiceProvider;
 
 class ServiceProvider extends IlluminateServiceProvider
@@ -44,5 +43,4 @@ class ServiceProvider extends IlluminateServiceProvider
             ], 'config');
         }
     }
-
 }

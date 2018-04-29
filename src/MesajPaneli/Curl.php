@@ -4,29 +4,34 @@ namespace Bskl\MpSms\MesajPaneli;
 
 class Curl
 {
-	static $handle; // Handle
-	static $body = ''; // Response body
-	static $head = ''; // Response head
-	static $info = [];
+    public static $handle; // Handle
+    public static $body = ''; // Response body
+    public static $head = ''; // Response head
+    public static $info = [];
 
-	static function head( $ch, $data ) {
-		Curl::$head = $data;
-		return strlen( $data );
-	}
+    public static function head($ch, $data)
+    {
+        self::$head = $data;
 
-	static function body( $ch, $data ) {
-		Curl::$body .= $data;
-		return strlen( $data );
-	}
+        return strlen($data);
+    }
 
-	static function fetch( $url, $opts = [] ) {
-		Curl::$head = Curl::$body = '';
+    public static function body($ch, $data)
+    {
+        self::$body .= $data;
 
-		Curl::$info = [];
-		Curl::$handle = curl_init( $url );
-        curl_setopt_array( Curl::$handle, $opts );
-		curl_exec( Curl::$handle );
-		Curl::$info = curl_getinfo( Curl::$handle );
-		curl_close( Curl::$handle );
-	}
+        return strlen($data);
+    }
+
+    public static function fetch($url, $opts = [])
+    {
+        self::$head = self::$body = '';
+
+        self::$info = [];
+        self::$handle = curl_init($url);
+        curl_setopt_array(self::$handle, $opts);
+        curl_exec(self::$handle);
+        self::$info = curl_getinfo(self::$handle);
+        curl_close(self::$handle);
+    }
 }
