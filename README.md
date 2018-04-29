@@ -36,7 +36,7 @@ Hızlı mesaj göndermek için Laravel Facade'i kullanmak isterseniz aşağıdak
 
 ```
 
-Ardından, mp-sms.php dosyasını aşağıdaki komutla birlikte config klasörünüze kopyalamalısınız.
+Ardından, mp-sms.php dosyasını config klasörüne kopyalamak için aşağıdaki komutu çalıştırın.
 
 ```php
 
@@ -65,13 +65,12 @@ class ExampleNotification extends Notification
     }
 
     /**
-     * Your notification must implements "mesajpaneliapi()"
+     * Get the mesajpaneliapi representation of the notification.
      */
     public function toMpSms($notifiable)
     {
         return (new MpSmsMessage)
-                    ->content("Mesaj içeriği")
-                    ->from("Kimden");
+                    ->content("Mesaj içeriği");
     }
 }
 
@@ -103,7 +102,7 @@ class User extends Authenticatable
 
 ## MesajPaneli Hesabınızı Ayarlama
 
-[link](https://smsvitrini.com/ "https://smsvitrini.com/") adresinden aldığınız kullanıcı bilgilerinizi config/mp-sms.php dosyasına kayıt etmelisiniz. Kolaylık olmasını istiyorsanız .env dosyanıza kayıt edebilirsiniz.
+[https://smsvitrini.com](https://smsvitrini.com/ "https://smsvitrini.com/") adresinden aldığınız kullanıcı bilgilerinizi config/mp-sms.php dosyasına kayıt etmelisiniz. Kolaylık olmasını istiyorsanız .env dosyanıza kayıt edebilirsiniz.
 
 ```php
 
