@@ -15,8 +15,9 @@ class MpSmsChannel
     /**
      * MpSmsChannel constructor.
      *
-     * @param   MpSms $client
-     * @return  self
+     * @param MpSms $client
+     *
+     * @return self
      */
     public function __construct(MpSms $client)
     {
@@ -26,14 +27,14 @@ class MpSmsChannel
     /**
      * Send the given notification with sms.
      *
-     * @param  mixed  $notifiable
-     * @param  \Illuminate\Notifications\Notification  $notification
+     * @param mixed                                  $notifiable
+     * @param \Illuminate\Notifications\Notification $notification
+     *
      * @return void
      */
     public function send($notifiable, Notification $notification)
     {
-        if (! $to = $notifiable->routeNotificationFor('mpsms'))
-        {
+        if (!$to = $notifiable->routeNotificationFor('mpsms')) {
             return;
         }
 
@@ -41,10 +42,8 @@ class MpSmsChannel
 
         try {
             return $this->client->sendSms($to, $message->content);
-        }
-        catch ( Exception $e ) {
+        } catch (Exception $e) {
             echo $e->getMessage();
         }
-
     }
 }
