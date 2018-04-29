@@ -20,7 +20,8 @@ class MpSms
      * MphSms constructor.
      *
      * @param   void
-     * @return  self
+     *
+     * @return self
      */
     public function __construct(string $from = null)
     {
@@ -35,10 +36,11 @@ class MpSms
     /**
      * Shortcut for creating sms.
      *
-     * @param   string|array $to
-     * @param   string|array $content
-     * @param   string       $from
-     * @return  \MesajPaneli\MesajPaneliApi
+     * @param string|array $to
+     * @param string|array $content
+     * @param string       $from
+     *
+     * @return \MesajPaneli\MesajPaneliApi
      */
     public function sendSms($to, $content, $from = null)
     {
@@ -46,8 +48,8 @@ class MpSms
 
         if (is_array($to)) {
             $data = [
-                "msg" => $content,
-                "tel" => $to,
+                'msg' => $content,
+                'tel' => $to,
             ];
 
             return $this->client->topluMesajGonder($from, $data);
@@ -56,8 +58,8 @@ class MpSms
         if (is_array($content)) {
             foreach ($content as $sms) {
                 $data[] = [
-                    "tel" => $to,
-                    "msg" => $sms,
+                    'tel' => $to,
+                    'msg' => $sms,
                 ];
             }
 
@@ -72,8 +74,9 @@ class MpSms
     /**
      * Get sms send report for the given reference number.
      *
-     * @param   string $ref
-     * @return  array  \MesajPaneli\MesajPaneliApi
+     * @param string $ref
+     *
+     * @return array \MesajPaneli\MesajPaneliApi
      */
     public function getSmsSendReport($ref)
     {
@@ -83,19 +86,20 @@ class MpSms
     /**
      * Dynamic client method call.
      *
-     * @param   string $method
-     * @param   array  $args
-     * @return  SmsApi
+     * @param string $method
+     * @param array  $args
+     *
+     * @return SmsApi
      */
     public function __call($method, array $args = [])
     {
-        if (method_exists($this->client, $method))
-        {
+        if (method_exists($this->client, $method)) {
             return call_user_func_array([
                 $this->client,
-                $method
+                $method,
             ], $args);
         }
+
         throw new \BadMethodCallException("Invalid method $method.");
     }
 }
