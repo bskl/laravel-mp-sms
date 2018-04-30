@@ -12,29 +12,7 @@ Composer ile yüklemek için:
 composer require bskl/laravel-mp-sms
 ```
 
-Yükeleme tamamlandıktan sonra ServiceProvider'ı config/app.php dosyasında **providers** böülümüne eklemelisiniz.
-
-```php
-// config/app.php
-
-'providers' => [
-    ...
-    Bskl\MpSms\ServiceProvider::class
-],
-```
-
-Hızlı mesaj göndermek için Laravel Facade'i kullanmak isterseniz aşağıdaki satırı config/app.php dosyasında **aliases** bölümüne eklemelisiniz.
-
-```php
-// config/app.php
-
-'aliases' => [
-    ...
-    'Mpsms' => Bskl\MpSms\Facade::class,
-],
-```
-
-Ardından, mp-sms.php dosyasını config klasörüne kopyalamak için aşağıdaki komutu çalıştırın.
+Yükeleme tamamlandıktan sonra mp-sms.php dosyasını config klasörüne kopyalamak için aşağıdaki komutu çalıştırın.
 
 ```php
 php artisan vendor:publish --provider="Bskl\MpSms\ServiceProvider"

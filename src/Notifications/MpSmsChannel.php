@@ -4,6 +4,7 @@ namespace Bskl\MpSms\Notifications;
 
 use Bskl\MpSms\MpSms;
 use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Log;
 
 class MpSmsChannel
 {
@@ -41,9 +42,13 @@ class MpSmsChannel
         $message = $notification->toMpSms($notifiable);
 
         try {
-            return $this->client->sendSms($to, $message->content);
+            $sms = $this->client->sendSms($to, $message->content);
         } catch (Exception $e) {
             echo $e->getMessage();
         }
+
+        $this->client->writeLog($message->logging, $sms);
+
+        return $sms;
     }
 }

@@ -19,6 +19,13 @@ class MpSmsMessage
     public $from;
 
     /**
+     * The message logging status.
+     *
+     * @var bool
+     */
+    public $logging;
+
+    /**
      * Create a new message instance.
      *
      * @param string $content
@@ -54,6 +61,20 @@ class MpSmsMessage
     public function from($from)
     {
         $this->from = $from;
+
+        return $this;
+    }
+
+    /**
+     * Set the message's logging status.
+     *
+     * @param bool $logging
+     *
+     * @return $this
+     */
+    public function logging($logging)
+    {
+        $this->logging = $logging;
 
         return $this;
     }

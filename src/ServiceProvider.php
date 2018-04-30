@@ -23,7 +23,7 @@ class ServiceProvider extends IlluminateServiceProvider
 
         $this->app->bind(MpSms::class, MpSms::class);
 
-        $this->app->singleton('mpsms', function () {
+        $this->app->singleton('mpsms', function ($app) {
             return new MpSms();
         });
 
