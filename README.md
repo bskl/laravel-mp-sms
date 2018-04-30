@@ -4,12 +4,12 @@
 
 ## Yükleme
 
+mesajpaneli.com sitesinin resmi olmayan Laravel 5 Notifications paketidir.
+
 Composer ile yüklemek için:
 
 ```php
-
 composer require bskl/laravel-mp-sms
-
 ```
 
 Yükeleme tamamlandıktan sonra ServiceProvider'ı config/app.php dosyasında **providers** böülümüne eklemelisiniz.
@@ -21,7 +21,6 @@ Yükeleme tamamlandıktan sonra ServiceProvider'ı config/app.php dosyasında **
     ...
     Bskl\MpSms\ServiceProvider::class
 ],
-
 ```
 
 Hızlı mesaj göndermek için Laravel Facade'i kullanmak isterseniz aşağıdaki satırı config/app.php dosyasında **aliases** bölümüne eklemelisiniz.
@@ -33,21 +32,17 @@ Hızlı mesaj göndermek için Laravel Facade'i kullanmak isterseniz aşağıdak
     ...
     'Mpsms' => Bskl\MpSms\Facade::class,
 ],
-
 ```
 
 Ardından, mp-sms.php dosyasını config klasörüne kopyalamak için aşağıdaki komutu çalıştırın.
 
 ```php
-
 php artisan vendor:publish --provider="Bskl\MpSms\ServiceProvider"
-
 ```
 
 ## Laravel Notifications ile Kullanım
 
 ```php
-
 namespace App\Notifications;
 
 use Bskl\MpSms\Notifications\MpSmsChannel;
@@ -73,13 +68,11 @@ class ExampleNotification extends Notification
                     ->content("Mesaj içeriği");
     }
 }
-
 ```
 
 Ayrıca, Notifiable modelinize routeNotificationForMpSms() fonksiyonunu eklemelisiniz.
 
 ```php
-
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
@@ -97,7 +90,6 @@ class User extends Authenticatable
         return $this->phone; // Örnek: 1234567890
     }
 }
-
 ```
 
 ## MesajPaneli Hesabınızı Ayarlama
@@ -105,16 +97,12 @@ class User extends Authenticatable
 [https://smsvitrini.com](https://smsvitrini.com/ "https://smsvitrini.com/") adresinden aldığınız kullanıcı bilgilerinizi config/mp-sms.php dosyasına kayıt etmelisiniz. Kolaylık olmasını istiyorsanız .env dosyanıza kayıt edebilirsiniz.
 
 ```php
-
 return [
     'username' => env('MPSMS_USERNAME', 'username'),
     'password' => env('MPSMS_PASSWORD', 'password'),
     'from'     => env('MPSMS_FROM', 'from'),
 ];
-
 ```
-
-mesajpaneli.com sitesinin resmi olmayan Laravel 5 Notifications paketidir.
 
 ## Lisans
 
