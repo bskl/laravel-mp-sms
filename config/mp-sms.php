@@ -52,9 +52,9 @@ return [
     'channels' => [
         'mpsms' => [
             'driver' => 'daily',
-            'path' => storage_path('logs/mpsms.log'),
-            'level' => 'debug',
-            'days' => 7,
+            'path'   => storage_path('logs/mpsms.log'),
+            'level'  => 'debug',
+            'days'   => 7,
         ],
     ],
 
