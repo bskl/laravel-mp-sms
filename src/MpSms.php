@@ -17,20 +17,27 @@ class MpSms
     private $client;
 
     /**
+     * @var bool
+     */
+    private $logging;
+
+    /**
      * MphSms constructor.
      *
      * @param   void
      *
      * @return self
      */
-    public function __construct(string $from = null)
+    public function __construct()
     {
-        $this->from = $from ?: config('mp-sms.from');
+        $this->from = config('mp-sms.from');
 
         $this->client = new MesajPaneliApi(
             config('mp-sms.username'),
             config('mp-sms.password')
         );
+
+        $this->logging = config('mp-sms.logging');
     }
 
     /**
@@ -81,6 +88,20 @@ class MpSms
     public function getSmsSendReport($ref)
     {
         return $this->client->raporDetay($ref);
+    }
+
+    public function writeLog($logging, $sms)
+    {
+        $logging = $logging ?: $this->logging;
+
+        if ($logging) {
+            $sms = array_merge($sms, [
+                        'content' => $message->content,
+                        'mp_log' => $this->getSmsSendReport($sms->ref)
+                    ]);
+
+            Log::channel('mpsms')->info($sms);
+        }
     }
 
     /**
