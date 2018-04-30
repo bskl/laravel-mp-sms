@@ -4,7 +4,6 @@ namespace Bskl\MpSms\Notifications;
 
 use Bskl\MpSms\MpSms;
 use Illuminate\Notifications\Notification;
-use Illuminate\Support\Facades\Log;
 
 class MpSmsChannel
 {
