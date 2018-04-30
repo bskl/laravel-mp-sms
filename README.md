@@ -104,6 +104,6 @@ return [
 ];
 ```
 
-## Lisans
+## Lisans
 
 MIT
