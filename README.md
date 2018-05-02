@@ -23,8 +23,8 @@ php artisan vendor:publish --provider="Bskl\MpSms\ServiceProvider"
 ```php
 namespace App\Notifications;
 
-use Bskl\MpSms\Notifications\MpSmsChannel;
-use Bskl\MpSms\Notifications\MpSmsMessage;
+use Bskl\MpSms\Channels\MpSmsChannel;
+use Bskl\MpSms\Channels\Messages\MpSmsMessage;
 use Illuminate\Notifications\Notification;
 
 class ExampleNotification extends Notification

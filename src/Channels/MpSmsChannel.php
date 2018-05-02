@@ -1,8 +1,9 @@
 <?php
 
-namespace Bskl\MpSms\Notifications;
+namespace Bskl\MpSms\Channels;
 
 use Bskl\MpSms\MpSms;
+use Bskl\MpSms\Channels\Messages\MpSmsMessage;
 use Illuminate\Notifications\Notification;
 
 class MpSmsChannel
@@ -40,11 +41,11 @@ class MpSmsChannel
 
         $message = $notification->toMpSms($notifiable);
 
-        try {
-            $sms = $this->client->sendSms($to, $message->content);
-        } catch (Exception $e) {
-            echo $e->getMessage();
+        if (is_string($message)) {
+            $message = new MpSmsMessage($message);
         }
+
+        $sms = $this->client->sendSms($to, $message->content);
 
         $this->client->writeLog($message->logging, $sms);
 

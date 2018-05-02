@@ -2,7 +2,7 @@
 
 namespace Bskl\MpSms\MesajPaneli;
 
-use Exception as AuthenticationException;
+use \Exception as AuthenticationException;
 
 class User
 {

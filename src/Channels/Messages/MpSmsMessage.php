@@ -1,6 +1,6 @@
 <?php
 
-namespace Bskl\MpSms\Notifications;
+namespace Bskl\MpSms\Channels\Messages;
 
 class MpSmsMessage
 {
