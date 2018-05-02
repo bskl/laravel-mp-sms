@@ -91,6 +91,14 @@ class MpSms
         return $this->client->raporDetay($ref);
     }
 
+    /**
+     * Write sms message to the log.
+     *
+     * @param bool  $logging
+     * @param array $sms
+     *
+     * @return void
+     */
     public function writeLog($logging, $sms)
     {
         $logging = $logging ?: $this->logging;
