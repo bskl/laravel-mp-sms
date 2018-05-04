@@ -105,7 +105,7 @@ class MpSms
 
         if ($logging === true) {
             $log = array_merge($sms, [
-                'mp_log' => $this->getSmsSendReport($sms['ref'])
+                'mp_log' => $this->getSmsSendReport($sms['ref']),
             ]);
 
             Log::channel('mpsms')->info(
