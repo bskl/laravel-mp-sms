@@ -2,8 +2,8 @@
 
 namespace Bskl\MpSms\Channels;
 
-use Bskl\MpSms\MpSms;
 use Bskl\MpSms\Channels\Messages\MpSmsMessage;
+use Bskl\MpSms\MpSms;
 use Illuminate\Notifications\Notification;
 
 class MpSmsChannel
