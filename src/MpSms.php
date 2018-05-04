@@ -104,7 +104,9 @@ class MpSms
         $logging = $logging ?: $this->logging;
 
         if ($logging) {
-            $log = $this->getSmsSendReport($sms->ref);
+            $log = array_merge($sms, [
+                'mp_log' => $this->getSmsSendReport($sms->ref)
+            ]);
 
             Log::channel('mpsms')->info(
                 implode(',', $log)
