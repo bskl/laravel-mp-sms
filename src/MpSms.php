@@ -56,7 +56,7 @@ class MpSms
 
         if (is_array($to)) {
             $data = [
-                'msg' => $content,
+                'msg' => trim($content),
                 'tel' => $to,
             ];
 
@@ -67,14 +67,14 @@ class MpSms
             foreach ($content as $sms) {
                 $data[] = [
                     'tel' => $to,
-                    'msg' => $sms,
+                    'msg' => trim($sms),
                 ];
             }
 
             return $this->client->parametrikMesajGonder($from, $data);
         }
 
-        $this->client->parametrikMesajEkle($to, $content);
+        $this->client->parametrikMesajEkle($to, trim($content));
 
         return $this->client->parametrikMesajGonder($from);
     }
@@ -103,9 +103,9 @@ class MpSms
     {
         $logging = $logging ?: $this->logging;
 
-        if ($logging) {
+        if ($logging === true) {
             $log = array_merge($sms, [
-                'mp_log' => $this->getSmsSendReport($sms->ref)
+                'mp_log' => $this->getSmsSendReport($sms['ref'])
             ]);
 
             Log::channel('mpsms')->info(
