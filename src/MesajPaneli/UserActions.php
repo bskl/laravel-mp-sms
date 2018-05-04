@@ -2,8 +2,8 @@
 
 namespace Bskl\MpSms\MesajPaneli;
 
-use \Exception as AuthenticationException;
-use \Exception as SmsException;
+use Exception as AuthenticationException;
+use Exception as SmsException;
 
 class UserActions
 {

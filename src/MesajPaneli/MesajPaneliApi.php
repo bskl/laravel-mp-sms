@@ -2,7 +2,7 @@
 
 namespace Bskl\MpSms\MesajPaneli;
 
-use \Exception as ClientException;
+use Exception as ClientException;
 
 class MesajPaneliApi
 {
