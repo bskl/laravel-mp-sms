@@ -95,8 +95,8 @@ class UserActions
                 CURLOPT_POSTFIELDS     => $postFields,
                 CURLOPT_TIMEOUT        => 50,
                 CURLOPT_ENCODING       => '',
-                CURLOPT_HEADERFUNCTION => ['App\Support\MesajPaneli\Curl', 'head'],
-                CURLOPT_WRITEFUNCTION  => ['App\Support\MesajPaneli\Curl', 'body'],
+                CURLOPT_HEADERFUNCTION => ['Bskl\MpSms\MesajPaneli\Curl', 'head'],
+                CURLOPT_WRITEFUNCTION  => ['Bskl\MpSms\MesajPaneli\Curl', 'body'],
             ]
         );
 
