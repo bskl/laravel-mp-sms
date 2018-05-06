@@ -4,13 +4,11 @@ namespace Bskl\MpSms\Channels;
 
 use Bskl\MpSms\Channels\Messages\MpSmsMessage;
 use Bskl\MpSms\MpSms;
+use Bskl\MpSms\Jobs\WriteLog;
 use Illuminate\Notifications\Notification;
-use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class MpSmsChannel
 {
-    use DispatchesJobs;
-
     /**
      * @var MpSms
      */
@@ -50,8 +48,12 @@ class MpSmsChannel
 
         $sms = $this->client->sendSms($to, $message->content);
 
-        $log = $this->client->writeLog($message->logging, $sms);
-        $this->dispatch($log)->delay(now()->addMinutes(2));
+        $logging = $message->logging ?: $this->client->getLogging();
+
+        if ($logging) {
+            WriteLog::dispatch($this->client, $sms)
+                ->delay(now()->addMinutes(2));
+        }
 
         return $sms;
     }
