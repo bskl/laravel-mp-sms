@@ -41,6 +41,6 @@ class WriteLog implements ShouldQueue
      */
     public function handle()
     {
-        $this->client->writeLog($sms);
+        $this->client->writeLog($this->sms);
     }
 }
