@@ -99,19 +99,26 @@ class MpSms
      *
      * @return void
      */
-    public function writeLog($logging, $sms)
+    public function writeLog($sms)
     {
-        $logging = $logging ?: $this->logging;
+        $log = array_merge($sms, [
+            'mp_log' => $this->getSmsSendReport($sms['ref']),
+        ]);
 
-        if ($logging === true) {
-            $log = array_merge($sms, [
-                'mp_log' => $this->getSmsSendReport($sms['ref']),
-            ]);
+        Log::channel('mpsms')->info(
+            implode(',', array_flatten($log))
+        );
+    }
 
-            Log::channel('mpsms')->info(
-                implode(',', array_flatten($log))
-            );
-        }
+    /**
+     * Returns the logging.
+     *
+     * @param   void
+     * @return  bool
+     */
+    public function getLogging()
+    {
+        return $this->logging;
     }
 
     /**
