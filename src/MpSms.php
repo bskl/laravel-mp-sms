@@ -114,7 +114,8 @@ class MpSms
      * Returns the logging.
      *
      * @param   void
-     * @return  bool
+     *
+     * @return bool
      */
     public function getLogging()
     {
