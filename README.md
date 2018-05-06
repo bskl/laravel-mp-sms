@@ -81,6 +81,52 @@ return [
     'from'     => env('MPSMS_FROM', 'from'),
 ];
 ```
+Gönderici adresini config dosyasından bağımsız olarak **MpSmsMessage**'ın **from()** fonksiyonu ile değiştirebilirsiniz.
+
+```php
+...
+
+    public function toMpSms($notifiable)
+    {
+        return (new MpSmsMessage)
+                    ->content("Mesaj içeriği")
+                    ->from("Gönderici");
+    }
+}
+```
+
+## Sms Gönderim Raporlarını Kayıt Etme
+
+Sms gönderim raporlarını kayıt etmek için Laravel'in **mpsms** kanalı kullanılır. config/mp-sms.php dosyasında **logging** alanı ile sms gönderim raporlarını kayıt edebilirsiniz. **path** alanı ile kayıtların yapılacağı dosya yolunu belirtebilirsiniz. Kayıtlar Laravel kuyruk kullanılarak 2 dakika gecikmeli kayıt edilmektedir.
+
+```php
+return [
+    'logging' => true,
+
+    'channels' => [
+        'mpsms' => [
+            'driver' => 'daily',
+            'path'   => storage_path('logs/mpsms.log'),
+            'level'  => 'debug',
+            'days'   => 7,
+        ],
+    ],
+];
+```
+
+Gönderim raporunu kayıt etmeyi config dosyasından bağımsız olarak **MpSmsMessage**'ın **logging()** fonksiyonu ile değiştirebilirsiniz.
+
+```php
+...
+
+    public function toMpSms($notifiable)
+    {
+        return (new MpSmsMessage)
+                    ->content("Mesaj içeriği")
+                    ->logging(false);
+    }
+}
+```
 
 ## Lisans
 
