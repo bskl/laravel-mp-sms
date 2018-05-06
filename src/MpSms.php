@@ -109,7 +109,7 @@ class MpSms
             ]);
 
             Log::channel('mpsms')->info(
-                implode(',', $log)
+                implode(',', array_flatten($log))
             );
         }
     }

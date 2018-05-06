@@ -5,9 +5,12 @@ namespace Bskl\MpSms\Channels;
 use Bskl\MpSms\Channels\Messages\MpSmsMessage;
 use Bskl\MpSms\MpSms;
 use Illuminate\Notifications\Notification;
+use Illuminate\Foundation\Bus\DispatchesJobs;
 
 class MpSmsChannel
 {
+    use DispatchesJobs;
+
     /**
      * @var MpSms
      */
@@ -35,7 +38,7 @@ class MpSmsChannel
      */
     public function send($notifiable, Notification $notification)
     {
-        if (!$to = $notifiable->routeNotificationFor('mpsms')) {
+        if (!$to = $notifiable->routeNotificationFor('mpsms', $notification)) {
             return;
         }
 
@@ -47,7 +50,8 @@ class MpSmsChannel
 
         $sms = $this->client->sendSms($to, $message->content);
 
-        $this->client->writeLog($message->logging, $sms);
+        $log = $this->client->writeLog($message->logging, $sms);
+        $this->dispatch($log)->delay(now()->addMinutes(2));
 
         return $sms;
     }
